@@ -35,7 +35,7 @@ public static class encryption
 
     public static string encrypt_string(string plain_text, byte[] key, byte[] iv)
     {
-        Aes aes = Aes.Create();
+        using Aes aes = Aes.Create();
         aes.Mode = CipherMode.CBC;
         aes.Key = key;
         aes.IV = iv;
@@ -51,7 +51,7 @@ public static class encryption
 
     public static string decrypt_string(string cipher_text, byte[] key, byte[] iv)
     {
-        Aes aes = Aes.Create();
+        using Aes aes = Aes.Create();
         aes.Mode = CipherMode.CBC;
         aes.Key = key;
         aes.IV = iv;

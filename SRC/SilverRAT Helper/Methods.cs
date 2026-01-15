@@ -161,12 +161,11 @@ public static class Methods
 
     public static int GetSizeValue(long SourceByte, long SizeByte)
     {
-        if (SourceByte == 0L)
+        if (SourceByte == 0L || SizeByte == 0L)
         {
             return 0;
         }
-        long value = Math.Abs(SourceByte);
-        return Math.Sign(value) * 100 / Math.Sign(SizeByte);
+        return (int)(SourceByte * 100 / SizeByte);
     }
 
     public static string BytesToString(long byteCount)

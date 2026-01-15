@@ -103,7 +103,7 @@ public class Aes256
         memoryStream.Read(array2, 0, 16);
         aesCryptoServiceProvider.IV = array2;
         using CryptoStream cryptoStream = new CryptoStream(memoryStream, aesCryptoServiceProvider.CreateDecryptor(), CryptoStreamMode.Read);
-        byte[] array3 = new byte[memoryStream.Length - 16L + 1L];
+        byte[] array3 = new byte[memoryStream.Length - 16L];
         byte[] array4 = new byte[cryptoStream.Read(array3, 0, array3.Length)];
         Buffer.BlockCopy(array3, 0, array4, 0, array4.Length);
         return array4;
@@ -111,14 +111,15 @@ public class Aes256
 
     private bool AreEqual(byte[] a1, byte[] a2)
     {
-        bool result = true;
+        if (a1 == null || a2 == null || a1.Length != a2.Length)
+        {
+            return false;
+        }
+        int result = 0;
         for (int i = 0; i < a1.Length; i++)
         {
-            if (a1[i] != a2[i])
-            {
-                result = false;
-            }
+            result |= a1[i] ^ a2[i];
         }
-        return result;
+        return result == 0;
     }
 }

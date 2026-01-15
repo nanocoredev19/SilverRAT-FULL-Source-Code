@@ -320,8 +320,8 @@ public class API
         using WebClient webClient = new WebClient();
         webClient.Headers["User-Agent"] = user_agent;
         security.Start();
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls13;
         byte[] bytes = webClient.UploadValues(api_endpoint + "?type=" + type, post_data);
-        ServicePointManager.ServerCertificateValidationCallback = (RemoteCertificateValidationCallback)Delegate.Combine(ServicePointManager.ServerCertificateValidationCallback, (RemoteCertificateValidationCallback)((object send, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) => true));
         return Encoding.Default.GetString(bytes);
     }
 
