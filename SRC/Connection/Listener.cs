@@ -15,8 +15,18 @@ internal class Listener
 
     public void CloseConnection()
     {
-        Server.Shutdown(SocketShutdown.Both);
-        Server.Close();
+        if (Server != null)
+        {
+            try
+            {
+                Server.Shutdown(SocketShutdown.Both);
+            }
+            catch
+            {
+            }
+            Server.Close();
+            Server = null;
+        }
     }
 
     public void Connect(object port)

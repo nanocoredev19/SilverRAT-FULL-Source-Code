@@ -145,7 +145,7 @@ public class Packet
     {
         if (DGV != null)
         {
-            return DGV.Cells[1].Value.ToString() + "\\" + DGV.Cells[2].Value.ToString() + "\\" + DGV.Cells[9].Value.ToString() + "\\" + DGV.Cells[9].Value.ToString();
+            return DGV.Cells[1].Value.ToString() + "\\" + DGV.Cells[2].Value.ToString() + "\\" + DGV.Cells[9].Value.ToString() + "\\" + DGV.Cells[10].Value.ToString();
         }
         return "";
     }

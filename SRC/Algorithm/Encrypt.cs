@@ -22,7 +22,7 @@ public class Encrypt
         byte[] result;
         using (Aes aes = Aes.Create())
         {
-            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(Password, new byte[13]
+            using Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(Password, new byte[13]
             {
                 73, 118, 97, 110, 32, 77, 101, 100, 118, 101,
                 100, 101, 118
@@ -50,7 +50,7 @@ public class Encrypt
     public static byte[] EncryptBytes(byte[] clearBytes, string Password)
     {
         using Aes aes = Aes.Create();
-        Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(Password, new byte[13]
+        using Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(Password, new byte[13]
         {
             73, 118, 97, 110, 32, 77, 101, 100, 118, 101,
             100, 101, 118
